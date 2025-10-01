@@ -3,6 +3,7 @@ package lab_2;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.time.format.DateTimeFormatter;
 
 public class JournalEntry implements Serializable {
     private String surname;
@@ -10,6 +11,7 @@ public class JournalEntry implements Serializable {
     private LocalDate birthDate;
     private String phone;
     private String address;
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public JournalEntry(String surname, String name, LocalDate birthDate, String phone, String address) {
         this.surname = surname;
@@ -42,7 +44,7 @@ public class JournalEntry implements Serializable {
     @Override
     public String toString() {
         return String.format("Student: %s %s, Date of birth: %s, Phone: %s, Address: %s",
-                surname, name, birthDate, phone, address);
+                surname, name, birthDate.format(dateFormatter), phone, address);
     }
 
     @Override

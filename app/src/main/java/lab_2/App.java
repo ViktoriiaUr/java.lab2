@@ -37,8 +37,7 @@ public class App {
                     }
                     break;
                 case "3":
-                    running = false;
-                    break;
+                    return;
                 default:
                     System.out.println("Incorrect option. Try again.");
             }
@@ -48,7 +47,7 @@ public class App {
     private static JournalEntry createEntry() {
         String surname = inputNonEmpty("Student's surname: ");
         String name = inputNonEmpty("Student's name: ");
-        LocalDate birthDate = inputDate("Student's date of birth (dd.MM.yyyy): ");
+        LocalDate birthDate = inputDate("Student's date of birth (dd.mm.yyyy): ");
         String phone = inputPhone("Student's phone number (+380XXXXXXXXX): ");
         String address = inputNonEmpty("Student's home address (street, house, apartment): ");
 
@@ -72,7 +71,7 @@ public class App {
             try {
                 return LocalDate.parse(input, dateFormatter);
             } catch (DateTimeParseException e) {
-                System.out.println("Incorrect input. Date should be in the format dd.MM.yyyy");
+                System.out.println("Incorrect input. Date should be in the format dd.mm.yyyy");
             }
         }
     }
