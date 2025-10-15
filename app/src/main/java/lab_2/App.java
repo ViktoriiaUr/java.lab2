@@ -11,7 +11,6 @@ public class App {
 
     public static void main(String[] args) {
         JournalService service = new JournalService();
-        boolean running = true;
 
         while (true) {
             System.out.println("\n~~~~~ Menu ~~~~~");
@@ -68,11 +67,30 @@ public class App {
         while (true) {
             System.out.print(prompt);
             String input = scanner.nextLine().trim();
-            try {
-                return LocalDate.parse(input, dateFormatter);
-            } catch (DateTimeParseException e) {
+
+            if (input.matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
+                String[] parts = input.split("\\.");
+                int day = Integer.parseInt(parts[0]);
+                int month = Integer.parseInt(parts[1]);
+                int year = Integer.parseInt(parts[2]);
+
+                if (isValidDate(day, month, year)) {
+                    return LocalDate.of(year, month, day);
+                } else {
+                    System.out.println("Incorrect input. Such a date does not exist.");
+                }
+            } else {
                 System.out.println("Incorrect input. Date should be in the format dd.mm.yyyy");
             }
+        }
+    }
+
+    private static boolean isValidDate(int day, int month, int year) {
+        try {
+            LocalDate.of(year, month, day);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 

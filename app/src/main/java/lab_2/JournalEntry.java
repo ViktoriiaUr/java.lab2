@@ -2,7 +2,6 @@ package lab_2;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.time.format.DateTimeFormatter;
 
 public class JournalEntry implements Serializable {
@@ -45,24 +44,5 @@ public class JournalEntry implements Serializable {
     public String toString() {
         return String.format("Student: %s %s, Date of birth: %s, Phone: %s, Address: %s",
                 surname, name, birthDate.format(dateFormatter), phone, address);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof JournalEntry))
-            return false;
-        JournalEntry that = (JournalEntry) o;
-        return Objects.equals(surname, that.surname) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(birthDate, that.birthDate) &&
-                Objects.equals(phone, that.phone) &&
-                Objects.equals(address, that.address);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(surname, name, birthDate, phone, address);
     }
 }
